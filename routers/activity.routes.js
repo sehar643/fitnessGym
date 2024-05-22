@@ -1,16 +1,19 @@
-import express from 'express'
-import { Addactivity, GetactivityBYID } from '../Controller/activity.controller.js'
+import express from "express";
+import {
+  Addactivity,
+  GetactivityBYID,
+  activites,
+  Updateactivity,
+  deleteactivity,
+} from "../controllers/activityController.js";
+import { authenticate } from "../middlewares/auth.js";
 
+const activity_router = express.Router();
 
-
-
-const router = express.Router()
-
-
-router.post('/activityadd' , Addactivity)
-router.get('/getactivitybyID/:StaffID' , GetactivityBYID)
-
-
-
-
-export default router
+activity_router.post("/create", authenticate, Addactivity);
+activity_router.put("/update/:id", Updateactivity);
+activity_router.get("/single/:id", GetactivityBYID);
+activity_router.get("/all", authenticate, activites);
+activity_router.delete("/delete/:id", authenticate, deleteactivity);
+export default activity_router;
+/// what is route chaining in nodejs

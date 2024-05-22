@@ -1,58 +1,16 @@
 import mongoose from "mongoose";
 
+const ActivitySchema = new mongoose.Schema({
+  activityName: { type: String, required: true },
+  bookingDate: { type: String, required: true },
+  activityTime: { type: String, required: true },
+  phone: { type: String, required: true },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+    required: true,
+  },
+});
 
-const Activityschema  = new mongoose.Schema({
-  
-    ActivityName: { type: String, required: true },
-     BookingDate : { type: String, required: true},
-     ActivityTime : { type: String, required: true},
-     Phone : { type: String, required: true},
-     userID : {type: mongoose.Schema.Types.ObjectId , ref: "users" , required: true},
-  
-  
-  
-    // activityname:{
-    //     type:String,
-    //     required:true
-    // },
-    // description:{
-    //     type:String,
-    //     required:true
-    // },
-    // StaffID:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref:"users",
-    //     required:true
-    // }
-   
-})
-
-const Activity = mongoose.model('activity' , Activityschema)
-export default Activity
-
-
-
-
-
-
-
-
-
-
-
-
-// import mongoose from "mongoose";
-
-// const ActivitiesSchema = new mongoose.Schema({
-//     ActivityName: { type: String, required: true },
-//     BookingDate : { type: String, required: true},
-//     ActivityTime : { type: String, required: true},
-//     Phone : { type: String, required: true},
-//     userID : {type: mongoose.Schema.Types.ObjectId },
-// })
-
-
-
-
-// const Activities = mongoose.model("Activity", ActivitiesSchema)
-// export default Activities;
+const Activity = mongoose.model("activity", ActivitySchema);
+export default Activity;
