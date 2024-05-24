@@ -50,20 +50,43 @@ export const GetactivityBYID = async (req, res) => {
   }
 };
 
+
+
+
 export const activites = async (req, res) => {
   const user = req.user;
   try {
-    const users = await Activity.find({ userId: user._id }).populate("userId");
+    const activities = await Activity.find({ userId: user._id }).populate("userId");
     return res
       .status(200)
-      .json({ message: "activites found", data: users, success: true });
+      .json({ message: "Activities found", data: activities, success: true });
   } catch (error) {
     return res.status(400).json({
-      message: "error while getting all ativites",
+      message: "Error while getting all activities",
       success: false,
     });
   }
 };
+
+
+
+
+
+
+// export const activites = async (req, res) => {
+//   const user = req.user;
+//   try {
+//     const users = await Activity.find({ userId: user._id }).populate("userId");
+//     return res
+//       .status(200)
+//       .json({ message: "activites found", data: users, success: true });
+//   } catch (error) {
+//     return res.status(400).json({
+//       message: "error while getting all ativites",
+//       success: false,
+//     });
+//   }
+// };
 
 export const Updateactivity = async (req, res) => {
   try {
