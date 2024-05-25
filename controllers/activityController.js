@@ -50,13 +50,12 @@ export const GetactivityBYID = async (req, res) => {
   }
 };
 
-
-
-
 export const activites = async (req, res) => {
   const user = req.user;
   try {
-    const activities = await Activity.find({ userId: user._id }).populate("userId");
+    const activities = await Activity.find({ userId: user._id }).populate(
+      "userId"
+    );
     return res
       .status(200)
       .json({ message: "Activities found", data: activities, success: true });
@@ -67,11 +66,6 @@ export const activites = async (req, res) => {
     });
   }
 };
-
-
-
-
-
 
 // export const activites = async (req, res) => {
 //   const user = req.user;
@@ -133,5 +127,23 @@ export const deleteactivity = async (req, res) => {
       .send({ message: "Activity Deleted Successfully", success: true });
   } catch (error) {
     console.log(error.message);
+  }
+};
+
+// ADMIN SECTION,
+
+export const adminGetAllActivities = async (req, res) => {
+  try {
+    const activities = await Activity.find().populate("userId");
+    if (activites) {
+      return res
+        .status(200)
+        .json({ message: "Activities found", data: activities, success: true });
+    }
+  } catch (error) {
+    return res.status(400).json({
+      message: "Error while getting all activities",
+      success: false,
+    });
   }
 };
