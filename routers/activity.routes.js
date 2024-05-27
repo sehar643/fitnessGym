@@ -17,6 +17,6 @@ activity_router.get("/single/:id", GetactivityBYID);
 activity_router.get("/all", authenticate, activites);
 activity_router.delete("/delete/:id", authenticate, deleteactivity);
 
-activity_router.get("/admin/activites", authenticate, adminGetAllActivities);
+activity_router.get("/admin/activities", authenticate, adminGetAllActivities);
 export default activity_router;
 /// what is route chaining in nodejs

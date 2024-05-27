@@ -127,6 +127,7 @@ export const deleteactivity = async (req, res) => {
       .send({ message: "Activity Deleted Successfully", success: true });
   } catch (error) {
     console.log(error.message);
+    return;
   }
 };
 
@@ -136,9 +137,11 @@ export const adminGetAllActivities = async (req, res) => {
   try {
     const activities = await Activity.find().populate("userId");
     if (activites) {
-      return res
-        .status(200)
-        .json({ message: "Activities found", data: activities, success: true });
+      return res.status(200).json({
+        message: "Activities found",
+        data: activities,
+        success: true,
+      });
     }
   } catch (error) {
     return res.status(400).json({
